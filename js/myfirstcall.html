@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>First Call</title>
+</head>
+<body>
+    <div class="image"> </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        var lyrics = "And we got three more days 'til Friday";
+        var queryurl = "http://api.funtranslations.com/translate/jive.json/?text="+lyrics;
+
+
+
+        var artist = "kanye west"
+
+        var musicUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist="+artist+"&s_track_rating=desc&quorum_factor=1&page_size=3&apikey=89ad81ace06e14e5ea120774c03a0555";
+
+        var getSnippetUrl = "https://api.musixmatch.com/ws/1.1/track.snippet.get?format=jsonp&callback=callback&track_id=80795468&apikey=89ad81ace06e14e5ea120774c03a0555";
+
+        trackId = 16499738
+
+        $.ajax({
+            url: queryurl,
+            method: "GET"
+        }).then(function(response){
+            console.log(response);
+            document.write(response.contents.translated);
+
+        })
+
+        $.ajax({
+            url: musicUrl,
+            method: "GET"
+        }).then(function(data){
+            console.log(data);
+        })
+
+        $.ajax({
+            url: getSnippetUrl,
+            method: "GET"
+        }).then(function(data){
+            console.log(data);
+        })
+
+
+    </script>
+</body>
+</html>
