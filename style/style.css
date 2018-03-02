@@ -4,15 +4,19 @@ body {
     background-repeat: repeat-y;
 }
 
-#head {
+ nav .nav-wrapper {
     font-family: 'Special Elite', cursive;
     background-color: #EFE6DD;
-    padding: 20px;
-    text-align: center;
+    padding: 55px;
+ }
+
+ nav .brand-logo {
     color: #231F20;
-    letter-spacing: 10px;
-    padding-bottom: 4px;
-}
+    margin-top: -27px;
+    margin-left: -25px;
+    font-size: 40px;
+    letter-spacing: 3px;
+ }
 
 .genreHead {
     font-family: 'Special Elite', cursive;
@@ -21,6 +25,7 @@ body {
     letter-spacing: 10px;
     margin-top: 40px;
     margin-bottom: 5px;
+    text-shadow: -1px 0 #231F20, 0 1px #231F20, 1px 0 #231F20, 0 -1px #231F20;
 
 }
 
@@ -32,4 +37,26 @@ body {
 
 .card .card-content a {
     color: #BB4430
+}
+
+#nav-mobile {
+    margin-top: -23px;
+    margin-right: -55px;
+    margin-bottom: 35px;
+}
+
+nav ul a {
+    color: #231F20;
+}
+
+#switchTrans {
+    position: absolute;
+    right: 260px;
+    top: 32px;
+    color: #231F20;
+    text-decoration-line: underline;
+}
+
+.current {
+    background-color: #BB4430
 }
