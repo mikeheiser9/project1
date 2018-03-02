@@ -1,7 +1,4 @@
-/* body {
-    background: url(../images/drake.png);
-    background-size: 20% */
-/* } */
+
 .jumbotron {
   position: relative;
   background-color: transparent;
@@ -15,4 +12,11 @@
 .jumbotron h2 {
     font-size: 2em;
   color: #CAD49D;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  margin-right: 20%;
+
 }
