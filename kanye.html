@@ -6,44 +6,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Kanye West</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.style.css" />
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="js.app.js"></script>
-    <link rel="stylesheet" href="kanyestyle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./style/kanyestyle.css">
 </head>
+<div>
+    <header>
+        <center>
+        <img src="/Users/bayaniison/homework1/project1/images/yeezy.png" alt="..." class="img-circle">
+    </center>
+    </header>
+
+</div>
 
 <body>
     <div class="container">
         <div class="row">
-            <div class="col m12">
-                <h1>What Kanye West song is this line from?</h1>
+            <div class="col-md-12">
+                <center>
+                    <h1>What Kanye West song is this line from?</h1>
+                </center>
+                <!-- <h1>What Kanye West song is this line from?</h1> -->
             </div>
         </div>
+
+        <br><br>
+
         <div class="row">
-            <div class="col m4">
+            <div class="col-md-4">
+                <!-- use block quotes for the song lyrics -->
                 <blockquote id="snippets">Placeholder</blockquote>
-
             </div>
-
         </div>
+
+        <br><br>
+
         <div class="row">
-            <div class="col m6">
-                <li>
-                    <ul id="answer1" data-answer="correct">answer1</ul>
-                    <ul id="answer2">answer2</ul>
-                    <ul id="answer3">answer3</ul>
-                </li>
+            <div class="col-md-6 col-md-offset-3">
+
+
+
+                <button type="button" class="btn btn-primary btn-lg btn-block">answer1</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block">answer2</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block">answer3</button>
+
+<br><br>
+
+                <!-- question reset button -->
+                <!-- scoring box -->
+                <div style="width:100%;">
+
+
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" style="width: 35%">
+                          <span class="sr-only">35% Complete (success)</span>
+                        </div>
+                        <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%">
+                          <span class="sr-only">20% Complete (warning)</span>
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: 10%">
+                          <span class="sr-only">10% Complete (danger)</span>
+                        </div>
+                      </div>
+
+                    
+                        </div>
+                    </div>
+                    <!-- end container -->
+                </div>
             </div>
-
-
-        </div>
-    </div>
-
-
-
-
-
 </body>
 
 </html>
