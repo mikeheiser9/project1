@@ -2,8 +2,12 @@ $( document ).ready(function() {
 
     ////////MAJOR TASK 1: Call musixmatch to get track names and id's  
     var artist = "kanye west"
+    counter = 1;
     var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist="+artist+"&s_track_rating=desc&quorum_factor=1&page_size=15&apikey=89ad81ace06e14e5ea120774c03a0555";
 
+    nextQuestion();
+
+function nextQuestion () {
     //get top 15 songs by artist
     $.ajax({
         url: getTracksUrl,
@@ -11,7 +15,7 @@ $( document ).ready(function() {
         dataType: "jsonp"
           
     }).then(function(response){
-        console.log(response);
+        //console.log(response);
         var things = response.message.body.track_list;
         var trackNames = [];
         var trackIDs = [];
@@ -23,7 +27,7 @@ $( document ).ready(function() {
             trackNames.push(things[i].track.track_name);
         }
         
-        console.log(trackNames);
+        //console.log(trackNames);
 
         /////////MAJOR TASK 2 Select 3 random songs to be in the next question, store them in new array, and delete them from old array. 
         var obj = {} 
@@ -31,27 +35,24 @@ $( document ).ready(function() {
         var questionIdsArray=[]
         
         for (i=0; i<3; i++) {
-            console.log(randy);
+            //console.log(randy);
             var randy = Math.floor(Math.random()*trackNames.length);
         
             //Get track name and id based on randy, save those to obj. INSTEAD: put tracks in array, and ids in seperate array. 
             obj["trackname"+i] = trackNames[randy];
             obj["trackid"+i] = trackIDs[randy];
-            console.log(obj)
             questionTracksArray.push(trackNames[randy]);
             questionIdsArray.push(trackIDs[randy]);
-            console.log(questionTracksArray);
-            console.log(questionIdsArray);
+            
 
             //remove the chosen track and trackid from large arrays
             trackNames.splice(randy, 1);
             trackIDs.splice(randy,1); 
-            console.log(trackNames); 
+            
         }
 
         //////CHOOSE 1 track to be right answer
         var rightAnswerPosition = Math.floor(Math.random() * Math.floor(3))
-        console.log("the right answer is #: "+rightAnswerPosition);
         var rightAnswerID = questionIdsArray[rightAnswerPosition];
         var rightAnswerTrack = questionTracksArray[rightAnswerPosition];
         console.log("the right answer and matching track id are: "+rightAnswerTrack+" "+rightAnswerID);
@@ -68,7 +69,7 @@ $( document ).ready(function() {
             method: "GET",
             dataType: "jsonp"
         }).then(function(data){
-            console.log(data);
+            //console.log(data);
             var snippet = data.message.body.snippet.snippet_body;
             console.log(snippet);
             
@@ -83,46 +84,47 @@ $( document ).ready(function() {
                 },
                 method: "POST"
             }).then(function(translate){
-                console.log(translate);
-                $(".snippet").text(translate.contents.translated); 
+                var translatedText = translate.contents.translated
+                $("#snippets").text(translatedText); 
             })
             
             //print answer options to document
-            $(".options").append("<p class='selection' data-position='0'>"+obj.trackname0+"</p>")
-            $(".options").append("<p class='selection' data-position='1'>"+obj.trackname1+"</p>")
-            $(".options").append("<p class='selection' data-position='2'>"+obj.trackname2+"</p>")
-
-
-            //MAJOR TASK 4: CHECK IF USERS ANSWER CORRECT OR NOT
-
-            $(document).on("click", ".selection", function() {
+            $(".option0").html("<p class='selection' data-position='0'>"+obj.trackname0+"</p>")
+            $(".option1").html("<p class='selection' data-position='1'>"+obj.trackname1+"</p>")
+            $(".option2").html("<p class='selection' data-position='2'>"+obj.trackname2+"</p>")
+            
+            
+             //MAJOR TASK 4: CHECK IF USERS ANSWER CORRECT OR NOT
+    
+            $(".selection").on("click", function() {
                 var userChoice = parseInt($(this).attr("data-position"));
                 //var userChoiceInt = parseInt(userChoice)
                 console.log(userChoice);
                 if (userChoice === rightAnswerPosition) {
-                    console.log("correct answer");
-                } else {
-                    console.log("incorrect answer");
-                }
+                
+                    alert('Great job! The original line was "'+snippet+'" ')
+                }else {
+                    alert('Sorry wrong answer! The original line was "'+snippet+'" from '+rightAnswerTrack)    
+                };
+                counter++
+                isGameOver();
             })
-
         })
-    })    
+    })   
+       
+}
+
+            function isGameOver () {}
+                console.log(counter +" how many questions so far")
+                    //check if its been 5 questions yet 
+                    if (counter>5) {
+                        alert ("5 questions have been asked, round is over")
+                    } else {
+                        nextQuestion();
+                    }
+                    
 
 
-
-        
-
-        
-        
-
-
-
-        
-    
-    
-
-    
 
     
 
