@@ -3,9 +3,11 @@ $(document).ready(function () {
     ////////MAJOR TASK 1: Call musixmatch to get track names and id's  
     var artist = "kanye west"
     counter = 1;
-    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist=" + artist + "&s_track_rating=desc&quorum_factor=1&page_size=15&apikey=89ad81ace06e14e5ea120774c03a0555";
+    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist=" + artist + "&s_track_rating=desc&quorum_factor=1&page_size=25&apikey=89ad81ace06e14e5ea120774c03a0555";
     var trackNames = [];
     var trackIDs = [];
+    console.log(artist);
+    console.log(trackNames);
 
    
         //get top 15 songs by artist
