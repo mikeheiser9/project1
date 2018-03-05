@@ -3,11 +3,13 @@ $(document).ready(function () {
     ////////MAJOR TASK 1: Call musixmatch to get track names and id's  
     var artist = "kanye west"
     counter = 1;
-    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist=" + artist + "&s_track_rating=desc&quorum_factor=1&page_size=25&apikey=89ad81ace06e14e5ea120774c03a0555";
+    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist="+artist+"&s_track_rating=desc&quorum_factor=1&page_size=15&apikey=89ad81ace06e14e5ea120774c03a0555";
     var trackNames = [];
     var trackIDs = [];
     console.log(artist);
     console.log(trackNames);
+    var artistChoice;
+    var language;
 
    
         //get top 15 songs by artist
@@ -122,7 +124,75 @@ $(document).ready(function () {
             })
         }
 
+
     
+    var clicks = $(".tabbs").click(function(){
+        if (this) {
+            $(".tabbs").removeClass("current")
+            $(this).addClass("current")
+        }
+        if (this){
+            var language = $(".current").attr("data-choice");
+            console.log(language);
+            sessionStorage.setItem("language1", language);
+            $(".brand-logo").html("Do You Speak Jive");
+            $("body").css("background-image","url(images/background.jpg)");
+            // $("body").css("font-family", "'Special Elite', cursive;"); 
+
+        }
+        if (language === "yoda") {
+            $(".brand-logo").html("Do You Speak Yoda");
+            $("body").css("background-image", "url(images/yoda.jpg)");
+            // $("body").css("font-family", "'VT323', monospace;");
+    
+        }
+        
+
+        if (language === "shakespeare") {
+            $(".brand-logo").html("Do You Speak Shakespeare")
+            $(".brand-logo").addClass("shakespeareClass")
+            $("body").css("background-image", "url(images/shakes.jpg)");
+            // $("body").css("font-family", "'MedievalSharp', cursive;");
+        }
+        // sessionStorage.clear();
+
+        
+     
+    });
+
+
+    var artistSelect = $(".card").click(function(){
+        artistChoice = $(this).attr("data-artist");
+        console.log(artistChoice);
+
+        // sessionStorage.clear();
+        // sessionStorage.setItem("artist-name", artistChoice);
+    })
+
+
+
+    var showLink = $(".card").click(function(){
+        if (this) {
+            $(".card").find("a").addClass("hidden");
+            $(this).find("a").removeClass("hidden");
+            $(".card").removeClass("selected")
+            $(this).addClass("selected");
+                        
+        }
+        sessionStorage.clear();
+        sessionStorage.setItem("artist-name", artistChoice);
+        sessionStorage.setItem("language1", language);
+    })
+
+    var startGame = $(".hidden").click(function(){
+        // sessionStorage.clear();
+        // sessionStorage.setItem("artist-name", artistChoice);
+        // sessionStorage.setItem("language1", language);
+
+    })
+
+
+
 
 
 });
