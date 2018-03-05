@@ -192,11 +192,6 @@ $(document).ready(function () {
         sessionStorage.clear();
         sessionStorage.setItem("artist-name", artistChoice);
         sessionStorage.setItem("language", language);
-
-                
-
-        
-
     })
 
 
