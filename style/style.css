@@ -10,6 +10,7 @@ body {
     padding: 55px;
  }
 
+
  nav .brand-logo {
     color: #231F20;
     margin-top: -27px;
@@ -60,3 +61,19 @@ nav ul a {
 .current {
     background-color: #BB4430
 }
+
+.shakespeareClass{
+    font-size: 36px !important;
+}
+
+/* [data-choice="jive"] body {
+    background-image: url(../images/background.jpg);
+}
+
+[data-choice="yoda"] body {
+    background-image: url(../images/yoda.jpg);
+}
+
+[data-choice="shakespeare"] body {
+    background-image: url(../images/shakes.jpg);
+} */
