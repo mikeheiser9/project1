@@ -46,6 +46,43 @@ var clicks = $(".tabbs").click(function(){
 
 //
 
+
+var clicks = $(".tabbs").click(function(){
+            if (this) {
+                $(".tabbs").removeClass("current")
+                $(this).addClass("current")
+            }
+            if (this){
+                // var language = $(this).attr(data-choice)
+                var jive = $(".current").attr("data-choice");
+                console.log(jive);
+                $(".brand-logo").html("Do You Speak Jive");
+                $(".container").css("background-image","url(../img/background.jpg)");
+                // $(".container").css("font-family", "'Special Elite', cursive;"); 
+            }
+            if (jive === "yoda") {
+                $(".brand-logo").html("Do You Speak Yoda");
+                // $(".container").css("background-image", "url(../img/yoda.jpg)");
+                // $(".container").css("font-family", "'VT323', monospace;");    
+            }
+            // if (language === "yoda") {
+            //     $(".container").css("background-image", "url(../img/yoda.jpg)");
+            //     $(".container").css("font-family", "'VT323', monospace;");
+            // }
+
+            if (jive === "shakespeare") {
+                $(".brand-logo").html("Do You Speak Shakespeare")
+                $(".brand-logo").addClass("shakespeareClass")
+                // $(".container").css("background-image", "url(../img/shakes.jpg)");
+                // $(".container").css("font-family", "'MedievalSharp', cursive;");
+            }
+            // if (language === "shakespeare") {
+            //     $(".container").css("background-image", "url(../img/shakes.jpg)");
+            //     $(".container").css("font-family", "'MedievalSharp', cursive;");
+            // }
+
+        });
+
 </script>    
 </body>
 </html>
