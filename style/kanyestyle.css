@@ -1,3 +1,10 @@
+body {
+  background-image: url(../images/background.jpg);
+  background-size: 100%;
+  background-repeat: repeat-y;
+  font-family: 'Lato', sans-serif;
+}
+
 
 .jumbotron {
   position: relative;
@@ -14,6 +21,11 @@
   color: #CAD49D;
 }
 
+img {
+  width: 350px;
+  height: 250px;
+}
+
 .btn-block {
   display: block;
   width: 100%;
@@ -21,7 +33,11 @@
 
 }
 
-
+blockquote {
+  border-left:none;
+  font-family: 'Shrikhand', cursive;
+  font-size: 250%;
+}
 
 blockquote:before {
   display: block;
@@ -32,4 +48,4 @@ blockquote:before {
   left: -20px;
   top: -20px;
   color: #7a7a7a;
-}
+};
