@@ -11,6 +11,11 @@ $(document).ready(function () {
     var artistChoice;
     var language;
 
+    if (sessionStorage.getItem("language") == undefined) {
+        language = "jive"      
+        console.log(language);
+
+    };
    
         //get top 15 songs by artist
         $.ajax({
@@ -125,6 +130,7 @@ $(document).ready(function () {
         }
 
 
+        
     
     var clicks = $(".tabbs").click(function(){
         if (this) {
@@ -132,9 +138,9 @@ $(document).ready(function () {
             $(this).addClass("current")
         }
         if (this){
-            var language = $(".current").attr("data-choice");
+            language = $(".current").attr("data-choice");
             console.log(language);
-            sessionStorage.setItem("language1", language);
+            sessionStorage.setItem("language", language);
             $(".brand-logo").html("Do You Speak Jive");
             $("body").css("background-image","url(images/background.jpg)");
             // $("body").css("font-family", "'Special Elite', cursive;"); 
@@ -179,15 +185,17 @@ $(document).ready(function () {
             $(this).addClass("selected");
                         
         }
-        sessionStorage.clear();
         sessionStorage.setItem("artist-name", artistChoice);
-        sessionStorage.setItem("language1", language);
     })
 
     var startGame = $(".hidden").click(function(){
-        // sessionStorage.clear();
-        // sessionStorage.setItem("artist-name", artistChoice);
-        // sessionStorage.setItem("language1", language);
+        sessionStorage.clear();
+        sessionStorage.setItem("artist-name", artistChoice);
+        sessionStorage.setItem("language", language);
+
+                
+
+        
 
     })
 
