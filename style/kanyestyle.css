@@ -2,7 +2,8 @@ body {
   background-image: url(../images/background.jpg);
   background-size: 100%;
   background-repeat: repeat-y;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Special Elite', cursive;
+
 }
 
 
@@ -14,7 +15,7 @@ body {
 }
 .jumbotron h1 {
     font-size: 4em;
-  color: #484538;
+  color: #231F20;
 }
 .jumbotron h2 {
     font-size: 2em;
@@ -47,16 +48,8 @@ blockquote:before {
   position: absolute;
   left: -20px;
   top: -20px;
-  color: #7a7a7a;
+  color: #231F20;
 };
-
-#artist-image {
-  margin-top: 15px;
-}
-
-body {
-  font-family: 'Special Elite', cursive;
-}
 
 #snippets {
   font-family: 'Special Elite', cursive;
@@ -67,11 +60,56 @@ body {
   color: #F3DFA2;
   padding: 10px;
   font-size: 28px;
-  margin-bottom: -18px
+  margin-top: 30px;
 
 }
 
 #results {
   font-size: 22px;
-  color: #F3DFA2;
+  color: #231F20;
+  font-style: italic;
+  margin-top: 30px;
+}
+
+.form-group label{
+  font-size: 20px;
+}
+
+.form-control {
+  display: block;
+  width: 50%;
+  height: 35px;
+  padding: 11px;
+  font-size: 14px;
+  line-height: 0.428571;
+  color: #231F20;
+  background-color: #F3DFA2;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#lyric-holder {
+  margin-top: 20px;
+}
+
+#whatSong {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.btn-primary {
+  background-color: #7EBDC2;
+}
+
+.btn-primary:hover {
+  background-color: #BB4430 !important;
+}
+
+.btn-primary.active {
+  background-color: #7EBDC2;
+}
+
+.btn-primary:active, .btn-primary:focus {
+  background-color: #BB4430 !important;
 }
