@@ -165,6 +165,8 @@ $(document).ready(function () {
                 $(".option1").html("<p class='selection' data-position='1'>" + obj.trackname1 + "</p>")
                 $(".option2").html("<p class='selection' data-position='2'>" + obj.trackname2 + "</p>")
 
+                //Hide high score forms when game starts
+                $("#enterInfo").hide()
 
                 //MAJOR TASK 4: CHECK IF USERS ANSWER CORRECT OR NOT
                 $(".selection").on("click", function () {
@@ -193,6 +195,9 @@ $(document).ready(function () {
                         console.log("5 questions have been asked, round is over")
                         $("#results").html("Game over! Your score is "+score);
                         $("#button-holder").hide();
+                        $("#enterInfo").show();
+                        $("#answer-holder").hide();
+                        
                         
                     } else {
                         console.log("move onto questions #"+counter)
