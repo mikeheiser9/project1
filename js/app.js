@@ -174,16 +174,17 @@ $(document).ready(function () {
                     if (userChoice === rightAnswerPosition) {
                         
                         $("#results").html('Great job! The original line was "' + snippet + '" ')
-                        $("#results").append("<button id='next-question'> Next Question </buton>")
+                        $("#button-holder").append("<button id='next-question'> Next Question </buton>")
                         score++
                         
                     } else {
                         
                         $("#results").html('Sorry wrong answer! The original line was "' + snippet + '" from ' + rightAnswerTrack)
-                        $("#results").append("<button id='next-question'> Next Question </buton>")
+                        $("#button-holder").append("<button id='next-question'> Next Question </buton>")
                         
                     };
                     $("#results").show();
+                    $("#button-holder").show();
                     counter++
 
 
@@ -191,6 +192,7 @@ $(document).ready(function () {
                     if (counter > 5) {
                         console.log("5 questions have been asked, round is over")
                         $("#results").html("Game over! Your score is "+score);
+                        $("#button-holder").hide();
                         
                     } else {
                         console.log("move onto questions #"+counter)
@@ -204,6 +206,7 @@ $(document).ready(function () {
         }
 
         $(document).on("click", "#next-question", function(){
+            $("#button-holder").empty();
             $("#results").hide();
             nextQuestion();
         })

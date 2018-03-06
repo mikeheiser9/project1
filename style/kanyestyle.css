@@ -49,3 +49,29 @@ blockquote:before {
   top: -20px;
   color: #7a7a7a;
 };
+
+#artist-image {
+  margin-top: 15px;
+}
+
+body {
+  font-family: 'Special Elite', cursive;
+}
+
+#snippets {
+  font-family: 'Special Elite', cursive;
+}
+
+#next-question {
+  background-color: #BB4430;
+  color: #F3DFA2;
+  padding: 10px;
+  font-size: 28px;
+  margin-bottom: -18px
+
+}
+
+#results {
+  font-size: 22px;
+  color: #F3DFA2;
+}
