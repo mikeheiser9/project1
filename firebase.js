@@ -13,6 +13,9 @@ var dataRef = firebase.database();
 // Initial Values
 var name = "";
 var age = 0;
+// var score=""
+
+score = sessionStorage.getItem("score")
 
 // Capture Button Click
 $("#add-user").on("click", function (event) {
@@ -25,6 +28,7 @@ $("#add-user").on("click", function (event) {
     dataRef.ref().push({
         name: name,
         age: age,
+        // score:score,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 });
@@ -34,12 +38,15 @@ dataRef.ref().on("child_added", function (childSnapshot) {
     // Log everything that's coming out of snapshot
     console.log(childSnapshot.val().name);
     console.log(childSnapshot.val().age);
+    // console.log(childSnapshot.val().score);
 
 
     // full list of items to the well
     $("#full-member-list").append("<div class='well'><span class='member-name'> " + childSnapshot.val().name +
-        " </span><span class='member-age'> " + childSnapshot.val().age +
-        " </span></div>");
+        " </span><span class='member-age'> " + childSnapshot.val().age + " </span></div>");
+        // " </span><span class='member-score'> " + childSnapshot.val().score + " </span></div>");
+        
+
 
     // Handle the errors
 }, function (errorObject) {
@@ -51,6 +58,7 @@ dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functio
     // Change the HTML to reflect
     $("#name-display").text(snapshot.val().name);
     $("#age-display").text(snapshot.val().age);
+    // $("#score-display").text(snapshot.val().score);
 
 });
 
