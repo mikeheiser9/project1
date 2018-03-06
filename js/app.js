@@ -12,7 +12,7 @@ $(document).ready(function () {
     var language;
     var score=0;
     
-    ////////MAJOR TASK 0: Read user's selection of language and artist, save to sessionstorage.  
+    ////////MAJOR TASK 0: Read user's selection of language and artist, then save to, and then read from sessionstorage.  
     var artistSelect = $(".card").click(function(){
         artistChoice = $(this).attr("data-artist");
         console.log(artistChoice);
@@ -58,7 +58,7 @@ $(document).ready(function () {
 
     ////////MAJOR TASK 1: Call musixmatch to get track names and id's  
 
-    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist="+artistChoice+"&s_track_rating=desc&quorum_factor=1&page_size=15&apikey=89ad81ace06e14e5ea120774c03a0555";
+    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist="+artistChoice+"&s_track_rating=desc&quorum_factor=1&page_size=30&apikey=89ad81ace06e14e5ea120774c03a0555";
    
         //get top 15 songs by artist
         $.ajax({
@@ -123,17 +123,35 @@ $(document).ready(function () {
                 dataType: "jsonp"
             }).then(function (data) {
                 console.log(data);
+                if (data.message.body.length==0) {
+                    nextQuestion();
+                    return
+                } 
                 var snippet = data.message.body.snippet.snippet_body;
                 console.log(snippet);
 
 
-                //MAJOR TASK 3: API call to FunTranslate API to translate snippet to chosen language
+                //API call to FunTranslate API based on which language was selected
+                if (language==="jive") {
                 var translateUrl = "http://api.funtranslations.com/translate/jive.json/?text=" + snippet;
+                var key = "Ex0S5zXJ945RlSnwTKuS7geF"
+                }
 
+                if (language==="yoda") {
+                    var translateUrl = "http://api.funtranslations.com/translate/yoda.json/?text=" + snippet;
+                    var key = "qHJ1JuyinTEvWX00BamKBQeF"
+                }
+
+                if (language==="shakespeare") {
+                    var translateUrl = "http://api.funtranslations.com/translate/shakespeare.json/?text=" + snippet;
+                    var key = "T8DF5Cy12eOCMAI_O5LF7geF"
+                }
+
+                
                 $.ajax({
                     url: translateUrl,
                     headers: {
-                        "X-FunTranslations-Api-Secret": "Ex0S5zXJ945RlSnwTKuS7geF"
+                        "X-FunTranslations-Api-Secret": key
                     },
                     method: "POST"
                 }).then(function (translate) {
@@ -168,10 +186,7 @@ $(document).ready(function () {
                     $("#results").show();
                     counter++
 
-                    $(document).on("click", "#next-question", function(){
-                        $("#results").hide();
-                        nextQuestion();
-                    })
+
                     
                     if (counter > 5) {
                         console.log("5 questions have been asked, round is over")
@@ -179,12 +194,19 @@ $(document).ready(function () {
                         
                     } else {
                         console.log("move onto questions #"+counter)
-                        nextQuestion();
+                        
                     }
                     
                 })
+
+
             })
         }
+
+        $(document).on("click", "#next-question", function(){
+            $("#results").hide();
+            nextQuestion();
+        })
 
 
         
