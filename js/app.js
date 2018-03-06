@@ -1,21 +1,64 @@
 $(document).ready(function () {
 
-    ////////MAJOR TASK 1: Call musixmatch to get track names and id's  
+  
     var artist = "kanye west"
     counter = 1;
-    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist="+artist+"&s_track_rating=desc&quorum_factor=1&page_size=15&apikey=89ad81ace06e14e5ea120774c03a0555";
+
     var trackNames = [];
     var trackIDs = [];
     console.log(artist);
     console.log(trackNames);
     var artistChoice;
     var language;
+    var score=0;
+    
+    ////////MAJOR TASK 0: Read user's selection of language and artist, then save to, and then read from sessionstorage.  
+    var artistSelect = $(".card").click(function(){
+        artistChoice = $(this).attr("data-artist");
+        console.log(artistChoice);
+
+        // sessionStorage.clear();
+        // sessionStorage.setItem("artist-name", artistChoice);
+    })
+
+    var showLink = $(".card").click(function(){
+        if (this) {
+            $(".card").find("a").addClass("hidden");
+            $(this).find("a").removeClass("hidden");
+            $(".card").removeClass("selected")
+            $(this).addClass("selected");
+                        
+        }
+        sessionStorage.setItem("artist-name", artistChoice);
+    })
+
+    var startGame = $(".hidden").click(function(){
+        sessionStorage.clear();
+        sessionStorage.setItem("artist-name", artistChoice);
+        sessionStorage.setItem("language", language);
+    })
 
     if (sessionStorage.getItem("language") == undefined) {
         language = "jive"      
         console.log(language);
 
+    } else {
+        language = sessionStorage.getItem("language");
+        artistChoice = sessionStorage.getItem("artist-name");
+        console.log(language);
+        console.log(artistChoice);
     };
+
+    //update artist picture
+
+    var artistImage = "images/"+artistChoice+".jpg"
+    console.log(artistImage);
+    $("#artist-image").attr("src", artistImage);
+
+
+    ////////MAJOR TASK 1: Call musixmatch to get track names and id's  
+
+    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist="+artistChoice+"&s_track_rating=desc&quorum_factor=1&page_size=30&apikey=89ad81ace06e14e5ea120774c03a0555";
    
         //get top 15 songs by artist
         $.ajax({
@@ -80,17 +123,35 @@ $(document).ready(function () {
                 dataType: "jsonp"
             }).then(function (data) {
                 console.log(data);
+                if (data.message.body.length==0) {
+                    nextQuestion();
+                    return
+                } 
                 var snippet = data.message.body.snippet.snippet_body;
                 console.log(snippet);
 
 
-                //MAJOR TASK 3: API call to FunTranslate API to translate snippet to chosen language
+                //API call to FunTranslate API based on which language was selected
+                if (language==="jive") {
                 var translateUrl = "http://api.funtranslations.com/translate/jive.json/?text=" + snippet;
+                var key = "Ex0S5zXJ945RlSnwTKuS7geF"
+                }
 
+                if (language==="yoda") {
+                    var translateUrl = "http://api.funtranslations.com/translate/yoda.json/?text=" + snippet;
+                    var key = "qHJ1JuyinTEvWX00BamKBQeF"
+                }
+
+                if (language==="shakespeare") {
+                    var translateUrl = "http://api.funtranslations.com/translate/shakespeare.json/?text=" + snippet;
+                    var key = "T8DF5Cy12eOCMAI_O5LF7geF"
+                }
+
+                
                 $.ajax({
                     url: translateUrl,
                     headers: {
-                        "X-FunTranslations-Api-Secret": "Ex0S5zXJ945RlSnwTKuS7geF"
+                        "X-FunTranslations-Api-Secret": key
                     },
                     method: "POST"
                 }).then(function (translate) {
@@ -99,6 +160,7 @@ $(document).ready(function () {
                 })
 
                 //print answer options to document
+                $("#middle").empty
                 $(".option0").html("<p class='selection' data-position='0'>" + obj.trackname0 + "</p>")
                 $(".option1").html("<p class='selection' data-position='1'>" + obj.trackname1 + "</p>")
                 $(".option2").html("<p class='selection' data-position='2'>" + obj.trackname2 + "</p>")
@@ -107,27 +169,44 @@ $(document).ready(function () {
                 //MAJOR TASK 4: CHECK IF USERS ANSWER CORRECT OR NOT
                 $(".selection").on("click", function () {
                     var userChoice = parseInt($(this).attr("data-position"));
-                    //var userChoiceInt = parseInt(userChoice)
+                    
                     console.log(userChoice);
                     if (userChoice === rightAnswerPosition) {
-
-                        alert('Great job! The original line was "' + snippet + '" ')
-                    } else {
-                        alert('Sorry wrong answer! The original line was "' + snippet + '" from ' + rightAnswerTrack)
-                    };
-                    counter++
-                    
-                    if (counter > 5) {
-                        alert("5 questions have been asked, round is over")
+                        
+                        $("#results").html('Great job! The original line was "' + snippet + '" ')
+                        $("#results").append("<button id='next-question'> Next Question </buton>")
+                        score++
                         
                     } else {
-                        alert ("move onto questions #"+counter)
-                        nextQuestion();
+                        
+                        $("#results").html('Sorry wrong answer! The original line was "' + snippet + '" from ' + rightAnswerTrack)
+                        $("#results").append("<button id='next-question'> Next Question </buton>")
+                        
+                    };
+                    $("#results").show();
+                    counter++
+
+
+                    
+                    if (counter > 5) {
+                        console.log("5 questions have been asked, round is over")
+                        $("#results").html("Game over! Your score is "+score);
+                        
+                    } else {
+                        console.log("move onto questions #"+counter)
+                        
                     }
                     
                 })
+
+
             })
         }
+
+        $(document).on("click", "#next-question", function(){
+            $("#results").hide();
+            nextQuestion();
+        })
 
 
         
@@ -160,39 +239,11 @@ $(document).ready(function () {
             $("body").css("background-image", "url(images/shakes.jpg)");
             // $("body").css("font-family", "'MedievalSharp', cursive;");
         }
-        // sessionStorage.clear();
-
-        
-     
+        // sessionStorage.clear(); 
     });
 
 
-    var artistSelect = $(".card").click(function(){
-        artistChoice = $(this).attr("data-artist");
-        console.log(artistChoice);
 
-        // sessionStorage.clear();
-        // sessionStorage.setItem("artist-name", artistChoice);
-    })
-
-
-
-    var showLink = $(".card").click(function(){
-        if (this) {
-            $(".card").find("a").addClass("hidden");
-            $(this).find("a").removeClass("hidden");
-            $(".card").removeClass("selected")
-            $(this).addClass("selected");
-                        
-        }
-        sessionStorage.setItem("artist-name", artistChoice);
-    })
-
-    var startGame = $(".hidden").click(function(){
-        sessionStorage.clear();
-        sessionStorage.setItem("artist-name", artistChoice);
-        sessionStorage.setItem("language", language);
-    })
 
 
 
