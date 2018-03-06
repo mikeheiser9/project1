@@ -1,21 +1,63 @@
 $(document).ready(function () {
 
-    ////////MAJOR TASK 1: Call musixmatch to get track names and id's  
+  
     var artist = "kanye west"
     counter = 1;
-    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist="+artist+"&s_track_rating=desc&quorum_factor=1&page_size=15&apikey=89ad81ace06e14e5ea120774c03a0555";
+
     var trackNames = [];
     var trackIDs = [];
     console.log(artist);
     console.log(trackNames);
     var artistChoice;
     var language;
+    
+    ////////MAJOR TASK 0: Read user's selection of language and artist, save to sessionstorage.  
+    var artistSelect = $(".card").click(function(){
+        artistChoice = $(this).attr("data-artist");
+        console.log(artistChoice);
+
+        // sessionStorage.clear();
+        // sessionStorage.setItem("artist-name", artistChoice);
+    })
+
+    var showLink = $(".card").click(function(){
+        if (this) {
+            $(".card").find("a").addClass("hidden");
+            $(this).find("a").removeClass("hidden");
+            $(".card").removeClass("selected")
+            $(this).addClass("selected");
+                        
+        }
+        sessionStorage.setItem("artist-name", artistChoice);
+    })
+
+    var startGame = $(".hidden").click(function(){
+        sessionStorage.clear();
+        sessionStorage.setItem("artist-name", artistChoice);
+        sessionStorage.setItem("language", language);
+    })
 
     if (sessionStorage.getItem("language") == undefined) {
         language = "jive"      
         console.log(language);
 
+    } else {
+        language = sessionStorage.getItem("language");
+        artistChoice = sessionStorage.getItem("artist-name");
+        console.log(language);
+        console.log(artistChoice);
     };
+
+    //update artist picture
+
+    var artistImage = "images/"+artistChoice+".jpg"
+    console.log(artistImage);
+    $("#artist-image").attr("src", artistImage);
+
+
+    ////////MAJOR TASK 1: Call musixmatch to get track names and id's  
+
+    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist="+artistChoice+"&s_track_rating=desc&quorum_factor=1&page_size=15&apikey=89ad81ace06e14e5ea120774c03a0555";
    
         //get top 15 songs by artist
         $.ajax({
@@ -160,44 +202,11 @@ $(document).ready(function () {
             $("body").css("background-image", "url(images/shakes.jpg)");
             // $("body").css("font-family", "'MedievalSharp', cursive;");
         }
-        // sessionStorage.clear();
-
-        
-     
+        // sessionStorage.clear(); 
     });
 
 
-    var artistSelect = $(".card").click(function(){
-        artistChoice = $(this).attr("data-artist");
-        console.log(artistChoice);
 
-        // sessionStorage.clear();
-        // sessionStorage.setItem("artist-name", artistChoice);
-    })
-
-
-
-    var showLink = $(".card").click(function(){
-        if (this) {
-            $(".card").find("a").addClass("hidden");
-            $(this).find("a").removeClass("hidden");
-            $(".card").removeClass("selected")
-            $(this).addClass("selected");
-                        
-        }
-        sessionStorage.setItem("artist-name", artistChoice);
-    })
-
-    var startGame = $(".hidden").click(function(){
-        sessionStorage.clear();
-        sessionStorage.setItem("artist-name", artistChoice);
-        sessionStorage.setItem("language", language);
-
-                
-
-        
-
-    })
 
 
 
