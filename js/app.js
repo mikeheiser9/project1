@@ -237,7 +237,9 @@ $(document).ready(function () {
         if (language === "yoda") {
             $(".brand-logo").html("Do You Speak Yoda");
             $("body").css("background-image", "url(images/yoda.jpg)");
-            // $("body").css("font-family", "'VT323', monospace;");
+            console.log($("#body").css("font-family"));
+            $("body").attr("style", "font-family: 'VT323' !important;");
+            
     
         }
         
@@ -246,7 +248,7 @@ $(document).ready(function () {
             $(".brand-logo").html("Do You Speak Shakespeare")
             $(".brand-logo").addClass("shakespeareClass")
             $("body").css("background-image", "url(images/shakes.jpg)");
-            // $("body").css("font-family", "'MedievalSharp', cursive;");
+            $("body").css("font-family", "'MedievalSharp', cursive;");
         }
         // sessionStorage.clear(); 
     });
