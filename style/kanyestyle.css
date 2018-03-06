@@ -2,7 +2,8 @@ body {
   background-image: url(../images/background.jpg);
   background-size: 100%;
   background-repeat: repeat-y;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Special Elite', cursive;
+
 }
 
 
@@ -50,10 +51,6 @@ blockquote:before {
   color: #231F20;
 };
 
-body {
-  font-family: 'Special Elite', cursive;
-}
-
 #snippets {
   font-family: 'Special Elite', cursive;
 }
@@ -99,4 +96,20 @@ body {
 #whatSong {
   font-size: 30px;
   font-weight: bolder;
+}
+
+.btn-primary {
+  background-color: #7EBDC2;
+}
+
+.btn-primary:hover {
+  background-color: #BB4430 !important;
+}
+
+.btn-primary.active {
+  background-color: #7EBDC2;
+}
+
+.btn-primary:active, .btn-primary:focus {
+  background-color: #BB4430 !important;
 }
