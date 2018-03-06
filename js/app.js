@@ -58,7 +58,7 @@ $(document).ready(function () {
 
     ////////MAJOR TASK 1: Call musixmatch to get track names and id's  
 
-    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist="+artistChoice+"&s_track_rating=desc&quorum_factor=1&page_size=30&apikey=89ad81ace06e14e5ea120774c03a0555";
+    var getTracksUrl = "https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_artist="+artistChoice+"&s_track_rating=desc&quorum_factor=1&page_size=30&apikey=8f4de785a9dfc3bf07c73a3c479848c3";
    
         //get top 15 songs by artist
         $.ajax({
@@ -67,7 +67,7 @@ $(document).ready(function () {
             dataType: "jsonp"
 
         }).then(function (response) {
-            //console.log(response);
+            console.log(response);
             var things = response.message.body.track_list;
 
 
@@ -113,7 +113,7 @@ $(document).ready(function () {
 
 
             //Get a snippet of the song. Go into the new tracksidarray[rightanswerposition] as the variable here in this url. 
-            var getSnippetUrl = "https://api.musixmatch.com/ws/1.1/track.snippet.get?format=jsonp&callback=callback&track_id=" + rightAnswerID + "&apikey=89ad81ace06e14e5ea120774c03a0555";
+            var getSnippetUrl = "https://api.musixmatch.com/ws/1.1/track.snippet.get?format=jsonp&callback=callback&track_id=" + rightAnswerID + "&apikey=8f4de785a9dfc3bf07c73a3c479848c3";
 
 
             //Second API call to Musixmatch to get snippet of correct answer

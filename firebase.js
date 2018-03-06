@@ -14,6 +14,7 @@ var dataRef = firebase.database();
 var name = "";
 // var score = sessionStorage.getItem("score")
 var age = 0;
+var highScores = []
 
 
 // Capture Button Click
@@ -35,8 +36,8 @@ $("#add-user").on("click", function (event) {
 dataRef.ref().on("child_added", function (childSnapshot) {
 
     // Log everything that's coming out of snapshot
-    console.log(childSnapshot.val().name);
-    console.log(childSnapshot.val().age);
+    // console.log(childSnapshot.val().name);
+    // console.log(childSnapshot.val().age);
     
 
 
@@ -57,8 +58,32 @@ dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functio
     // Change the HTML to reflect
     $("#name-display").text(snapshot.val().name);
     $("#age-display").text(snapshot.val().age);
+
+
     
 
 });
+
+dataRef.ref().once("value", function(snapshot) {
+
+    // Then we console.log the value of snapshot
+    snapshot.forEach(function (childSnapshot) {
+        var nameKey = childSnapshot.key;
+        var nameData = childSnapshot.val().name;
+        var ageData= childSnapshot.val().age;
+
+        var obj2 = {
+            name: nameData,
+            age: ageData
+        }
+        highScores.push(obj2);
+    })
+
+console.log(highScores);
+$(".high-score").html(highScores[0].name+ "scored:  "+highScores[0].age )
+    
+})
+
+
 
 
