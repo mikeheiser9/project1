@@ -4,23 +4,25 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kanye West</title>
+    <title>Lyrics Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
     <link rel="stylesheet" href="./style/kanyestyle.css">
-    <script
-    src="https://code.jquery.com/jquery-2.2.4.min.js"
-    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
 </head>
 <div>
     <header>
         <center>
-        <img id ="artist-image" src="images/Kanye West.jpg" alt="Kanye West" class="img-circle">
-    </center>
+            <img id="artist-image" src="images/Kanye West.jpg" alt="Kanye West" class="img-circle">
+        </center>
     </header>
 
 </div>
@@ -40,18 +42,23 @@
                 <center>
                     <h3>What song is this line from?</h3>
                     <div id="results"></div>
+                    <br>
+                    <br>
+                    <div id="button-holder"></div>
                 </center>
-        
+
             </div>
         </div>
 
-        <br><br>
+        <br>
+        <br>
 
 
 
-        <br><br>
+        <br>
+        <br>
 
-        <div class="row" >
+        <div class="row">
             <div class="col-md-6 col-md-offset-3" id="middle">
 
 
@@ -60,46 +67,52 @@
                 <button type="button" class="option1 answer btn btn-primary btn-lg btn-block">answer2</button>
                 <button type="button" class="option2 answer btn btn-primary btn-lg btn-block">answer3</button>
 
-<br><br>
+                <br>
+                <br>
 
-                <!-- question reset button -->
-                <!-- scoring box -->
+
                 <div style="width:100%;">
+                    <center>
+                        <form>
+                            <div class="form-group">
+                                <label for="name-input">Enter Initials</label>
+                                <input type="text" class="form-control" id="name-input" placeholder="XXX">
+                            </div>
 
-                        <center>
-                    
-                            <form>
-                            
-                        <div class="form-group">
-                                
+                            <div class="form-group">
+                                <label for="age-input">Enter Age</label>
+                                <input type="number" class="form-control" id="age-input" placeholder="XX">
+                            </div>
 
-                          <label for="correctAnswers">Correct Answers</label>
-                          <input type="correct" class="form-control" id="correctAnswers" placeholder="0">
-                        </div>
-                        <div class="form-group">
-                          <label for="incorrectAnswers">Incorrect</label>
-                          <input type="incorrect" class="form-control" id="incorrectAnswers" placeholder="0">
-                        </div>
-                        </center>
-                          <br>
-
-                    <!--display all-time high score  -->
-
-                    <div class="row">
-                            <a href="#" class="btn btn-primary btn-lg active" role="button">Reset</a></div>
-
-                    <!-- code for all time high scores - use for main page -->
-                            <!-- <div class="col-lg-6">
-                    <div class="panel panel-success">
-                        <label for="allTimeHighScores">All Time High Scores</label>
-                        <input type="highScore" class="form-control" id="highScore" placeholder="AAA">
-                    </div> -->
-                        </div>
-                    </div>
-                    <!-- end container -->
+                            <button class="btn btn-default btn-lg active" id="add-user" type="submit">Submit</button>
+                    </center>
+                    <br>
                 </div>
+
             </div>
-<script src="js/app.js"> </script>     
+            <!-- end container -->
+        </div>
+    </div>
+    <script>
+
+        // Initialize Firebase
+
+        var config = {
+            apiKey: "AIzaSyBWMFUmEh_35EqJCjUixK9Fiy5idSa9XY4",
+            authDomain: "do-you-speak-jive.firebaseapp.com",
+            databaseURL: "https://do-you-speak-jive.firebaseio.com",
+            projectId: "do-you-speak-jive",
+            storageBucket: "do-you-speak-jive.appspot.com",
+            messagingSenderId: "1077343670184"
+        };
+    </script>
+    <script src="js/app.js"> </script>
+    <script src="firebase.js"></script>
+
+
+
+
+
 </body>
 
 </html>
