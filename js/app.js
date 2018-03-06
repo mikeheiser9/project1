@@ -194,6 +194,7 @@ $(document).ready(function () {
                     if (counter > 5) {
                         console.log("5 questions have been asked, round is over")
                         $("#results").html("Game over! Your score is "+score);
+                        $("#results").append("<div class='score'>"+score+"</div>")
                         $("#button-holder").hide();
                         $("#enterInfo").show();
                         $("#answer-holder").hide();
