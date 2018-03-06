@@ -113,3 +113,16 @@ blockquote:before {
 .btn-primary:active, .btn-primary:focus {
   background-color: #BB4430 !important;
 }
+
+#homeBtn {
+  float: left;
+  background-color: #7EBDC2;
+  color: #231F20;
+  font-family: 'Special Elite', cursive;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#artist-image {
+  margin-top: 20px;
+}
