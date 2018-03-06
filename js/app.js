@@ -133,17 +133,17 @@ $(document).ready(function () {
 
                 //API call to FunTranslate API based on which language was selected
                 if (language==="jive") {
-                var translateUrl = "http://api.funtranslations.com/translate/jive.json/?text=" + snippet;
+                var translateUrl = "https://api.funtranslations.com/translate/jive.json/?text=" + snippet;
                 var key = "Ex0S5zXJ945RlSnwTKuS7geF"
                 }
 
                 if (language==="yoda") {
-                    var translateUrl = "http://api.funtranslations.com/translate/yoda.json/?text=" + snippet;
+                    var translateUrl = "https://api.funtranslations.com/translate/yoda.json/?text=" + snippet;
                     var key = "qHJ1JuyinTEvWX00BamKBQeF"
                 }
 
                 if (language==="shakespeare") {
-                    var translateUrl = "http://api.funtranslations.com/translate/shakespeare.json/?text=" + snippet;
+                    var translateUrl = "https://api.funtranslations.com/translate/shakespeare.json/?text=" + snippet;
                     var key = "T8DF5Cy12eOCMAI_O5LF7geF"
                 }
 
