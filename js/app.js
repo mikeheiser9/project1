@@ -10,6 +10,7 @@ $(document).ready(function () {
     console.log(trackNames);
     var artistChoice;
     var language;
+    var score=0;
     
     ////////MAJOR TASK 0: Read user's selection of language and artist, save to sessionstorage.  
     var artistSelect = $(".card").click(function(){
@@ -141,6 +142,7 @@ $(document).ready(function () {
                 })
 
                 //print answer options to document
+                $("#middle").empty
                 $(".option0").html("<p class='selection' data-position='0'>" + obj.trackname0 + "</p>")
                 $(".option1").html("<p class='selection' data-position='1'>" + obj.trackname1 + "</p>")
                 $(".option2").html("<p class='selection' data-position='2'>" + obj.trackname2 + "</p>")
@@ -149,21 +151,34 @@ $(document).ready(function () {
                 //MAJOR TASK 4: CHECK IF USERS ANSWER CORRECT OR NOT
                 $(".selection").on("click", function () {
                     var userChoice = parseInt($(this).attr("data-position"));
-                    //var userChoiceInt = parseInt(userChoice)
+                    
                     console.log(userChoice);
                     if (userChoice === rightAnswerPosition) {
-
-                        alert('Great job! The original line was "' + snippet + '" ')
-                    } else {
-                        alert('Sorry wrong answer! The original line was "' + snippet + '" from ' + rightAnswerTrack)
-                    };
-                    counter++
-                    
-                    if (counter > 5) {
-                        alert("5 questions have been asked, round is over")
+                        
+                        $("#results").html('Great job! The original line was "' + snippet + '" ')
+                        $("#results").append("<button id='next-question'> Next Question </buton>")
+                        score++
                         
                     } else {
-                        alert ("move onto questions #"+counter)
+                        
+                        $("#results").html('Sorry wrong answer! The original line was "' + snippet + '" from ' + rightAnswerTrack)
+                        $("#results").append("<button id='next-question'> Next Question </buton>")
+                        
+                    };
+                    $("#results").show();
+                    counter++
+
+                    $(document).on("click", "#next-question", function(){
+                        $("#results").hide();
+                        nextQuestion();
+                    })
+                    
+                    if (counter > 5) {
+                        console.log("5 questions have been asked, round is over")
+                        $("#results").html("Game over! Your score is "+score);
+                        
+                    } else {
+                        console.log("move onto questions #"+counter)
                         nextQuestion();
                     }
                     
