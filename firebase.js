@@ -1,12 +1,12 @@
 // Initialize Firebase
-var config = {
-    apiKey: "AIzaSyBWMFUmEh_35EqJCjUixK9Fiy5idSa9XY4",
-    authDomain: "do-you-speak-jive.firebaseapp.com",
-    databaseURL: "https://do-you-speak-jive.firebaseio.com",
-    projectId: "do-you-speak-jive",
-    storageBucket: "do-you-speak-jive.appspot.com",
-    messagingSenderId: "1077343670184"
-};
+// var config = {
+//     apiKey: "AIzaSyBWMFUmEh_35EqJCjUixK9Fiy5idSa9XY4",
+//     authDomain: "do-you-speak-jive.firebaseapp.com",
+//     databaseURL: "https://do-you-speak-jive.firebaseio.com",
+//     projectId: "do-you-speak-jive",
+//     storageBucket: "do-you-speak-jive.appspot.com",
+//     messagingSenderId: "1077343670184"
+// };
 
 firebase.initializeApp(config);
 var dataRef = firebase.database();
