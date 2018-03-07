@@ -253,8 +253,11 @@ $(document).ready(function () {
             $("body").css("background-image", "url(images/shakes.jpg)");
             $("body").css("font-family", "'MedievalSharp', cursive;");
         }
-        // sessionStorage.clear(); 
+        
     });
+
+    
+
 
 
     

@@ -13,7 +13,7 @@ var dataRef = firebase.database();
 // Initial Values
 var name = "";
 var age = 0;
-var highScores = []
+var highScores = [];
 var languageFB;
 var artistFB;
 
@@ -21,6 +21,8 @@ var artistFB;
 // Capture Button Click
 $("#add-user").on("click", function (event) {
     event.preventDefault();
+
+    //take user to high score page
 
     name = $("#name-input").val().trim();
     age = $(".score").text().trim();
@@ -37,6 +39,7 @@ $("#add-user").on("click", function (event) {
         
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
+    window.location.assign("highscores.html")
 });
 
 dataRef.ref().on("child_added", function (childSnapshot) {
@@ -51,9 +54,6 @@ dataRef.ref().on("child_added", function (childSnapshot) {
     $("#full-member-list").append("<div class='well'><span class='member-name'> " + childSnapshot.val().name +
         " </span><span class='member-age'> " + childSnapshot.val().age + " </span><span class='member-age'> " + childSnapshot.val().languageFB + " </span><span class='member-age'> " + childSnapshot.val().artistFB + " </span></div>");
         
-        
-
-
     // Handle the errors
 }, function (errorObject) {
     console.log("Errors handled: " + errorObject.code);
@@ -99,6 +99,9 @@ console.log(highScores);
 
 var language = sessionStorage.getItem("language");
 var artistChoice = sessionStorage.getItem("artist-name");
+
+
+
 
 
 
