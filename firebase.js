@@ -12,9 +12,10 @@ firebase.initializeApp(config);
 var dataRef = firebase.database();
 // Initial Values
 var name = "";
-// var score = sessionStorage.getItem("score")
 var age = 0;
 var highScores = []
+// var languageFB;
+// var artistFB;
 
 
 // Capture Button Click
@@ -23,11 +24,16 @@ $("#add-user").on("click", function (event) {
 
     name = $("#name-input").val().trim();
     age = $(".score").text().trim();
+    // languageFB = $("#current-artist").text();
+    // artistFB = $("#current-language").text();
+    // console.log(languageFB);
 
     // Code for the push
     dataRef.ref().push({
         name: name,
         age: age,
+        // languageFB: languageFB,
+        // artistFB: artistFB,
         
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
@@ -80,9 +86,15 @@ dataRef.ref().once("value", function(snapshot) {
     })
 
 console.log(highScores);
-$(".high-score").html(highScores[0].name+ "scored:  "+highScores[0].age )
-    
+    for (i=0; i<highScores.length;i++) {
+        var showScore = $("<div class='show-score'>")
+        showScore.append(highScores[i].name+ " scored:  "+highScores[i].age+" points while playing the "+artistChoice+ " game on " +language +" language")
+        $(".high-score").append(showScore);
+    }
 })
+
+var language = sessionStorage.getItem("language");
+var artistChoice = sessionStorage.getItem("artist-name");
 
 
 

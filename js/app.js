@@ -41,10 +41,13 @@ $(document).ready(function () {
     if (sessionStorage.getItem("language") == undefined) {
         language = "jive"      
         console.log(language);
+        $("#current-language").text(language);
 
     } else {
         language = sessionStorage.getItem("language");
         artistChoice = sessionStorage.getItem("artist-name");
+        $("#current-language").text(language);
+        $("#current-artist").text(artistChoice);
         console.log(language);
         console.log(artistChoice);
     };

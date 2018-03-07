@@ -5,6 +5,11 @@ body {
   font-family: 'Special Elite', cursive;
 
 }
+#current-artist,
+#current-language {
+  float:right;
+  /* display: none; */
+}
 
 
 .jumbotron {
