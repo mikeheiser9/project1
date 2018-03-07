@@ -196,11 +196,12 @@ $(document).ready(function () {
                     
                     if (counter > 5) {
                         console.log("5 questions have been asked, round is over")
+                        $("#answer-holder").hide();
                         $("#results").html("Game over! Your score is "+score);
                         $("#results").append("<div class='score'>"+score+"</div>")
                         $("#button-holder").hide();
                         $("#enterInfo").show();
-                        $("#answer-holder").hide();
+                        
                         
                         
                     } else {
@@ -233,17 +234,18 @@ $(document).ready(function () {
             console.log(language);
             sessionStorage.setItem("language", language);
             $(".brand-logo").html("Do You Speak Jive");
-            $("body").css("background-image","url(images/background.jpg)");
+            $("body").css("background-image", "url(images/background.jpg)");
             // $("body").css("font-family", "'Special Elite', cursive;"); 
 
         }
         if (language === "yoda") {
             $(".brand-logo").html("Do You Speak Yoda");
-            $("body").css("background-image", "url(images/yoda.jpg)");
+            $('body').css("background-image", "url(/images/r2d2.jpeg)");
+            $("body").css("background-image", "url(images/r2d2.jpeg)");
             console.log($("#body").css("font-family"));
             $("body").attr("style", "font-family: 'VT323' !important;");
             
-    
+            
         }
         
 
