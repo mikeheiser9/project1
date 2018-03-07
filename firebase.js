@@ -14,8 +14,8 @@ var dataRef = firebase.database();
 var name = "";
 var age = 0;
 var highScores = []
-// var languageFB;
-// var artistFB;
+var languageFB;
+var artistFB;
 
 
 // Capture Button Click
@@ -24,16 +24,16 @@ $("#add-user").on("click", function (event) {
 
     name = $("#name-input").val().trim();
     age = $(".score").text().trim();
-    // languageFB = $("#current-artist").text();
-    // artistFB = $("#current-language").text();
-    // console.log(languageFB);
+    languageFB = $("#current-artist").text();
+    artistFB = $("#current-language").text();
+    console.log(languageFB);
 
     // Code for the push
     dataRef.ref().push({
         name: name,
         age: age,
-        // languageFB: languageFB,
-        // artistFB: artistFB,
+        languageFB: languageFB,
+        artistFB: artistFB,
         
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
@@ -49,7 +49,7 @@ dataRef.ref().on("child_added", function (childSnapshot) {
 
     // full list of items to the well
     $("#full-member-list").append("<div class='well'><span class='member-name'> " + childSnapshot.val().name +
-        " </span><span class='member-age'> " + childSnapshot.val().age + " </span></div>");
+        " </span><span class='member-age'> " + childSnapshot.val().age + " </span><span class='member-age'> " + childSnapshot.val().languageFB + " </span><span class='member-age'> " + childSnapshot.val().artistFB + " </span></div>");
         
         
 
@@ -77,10 +77,14 @@ dataRef.ref().once("value", function(snapshot) {
         var nameKey = childSnapshot.key;
         var nameData = childSnapshot.val().name;
         var ageData= childSnapshot.val().age;
+        var artistData = childSnapshot.val().artistFB;
+        var languageData = childSnapshot.val().languageFB;
 
         var obj2 = {
             name: nameData,
-            age: ageData
+            age: ageData,
+            language: languageData,
+            artist: artistData
         }
         highScores.push(obj2);
     })
@@ -88,7 +92,7 @@ dataRef.ref().once("value", function(snapshot) {
 console.log(highScores);
     for (i=0; i<highScores.length;i++) {
         var showScore = $("<div class='show-score'>")
-        showScore.append(highScores[i].name+ " scored:  "+highScores[i].age+" points while playing the "+artistChoice+ " game on " +language +" language")
+        showScore.append(highScores[i].name+ " scored:  "+highScores[i].age+" points while playing the "+highScores[i].language+ " game on " +highScores[i].artist +" language")
         $(".high-score").append(showScore);
     }
 })

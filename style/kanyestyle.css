@@ -131,3 +131,14 @@ blockquote:before {
 #artist-image {
   margin-top: 20px;
 }
+
+.show-score {
+  margin: 15px;
+  border: 2px solid #BB4430;
+  border-radius: 3px;
+  padding: 10px;
+  background-color: #F3DFA2;
+  display: inline-block;
+  font-family: "Lato";
+  font-size: 150%;
+}
